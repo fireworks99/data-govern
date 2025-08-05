@@ -1,55 +1,55 @@
 <template>
   <div class="sidebar_wrapper">
 
-    <el-menu :default-openeds="['1', '2']" class="el-menu-vertical-demo" @select="handleSelect">
-      <el-submenu v-for="item in func" :key="item.name + item.icon" :index="item.code">
-        <template slot="title">
-          <i :class="item.icon"></i>
-          <span>{{ item.name }}</span>
-        </template>
+    <el-menu
+      :default-active="$route.path" 
+      :default-openeds="['/govern', '/service']" 
+      class="el-menu-vertical-demo"
+      router>
 
-        <el-menu-item v-for="subitem in item.children" :key="subitem.name + subitem.code" :index="subitem.code">
+      <div v-for="item in funcs" :key="item.path">
 
+        <el-submenu :index="item.path" v-if="item.children.length > 1">
           <template slot="title">
-            <i :class="subitem.icon"></i>
-            <span> {{ subitem.name }}</span>
+            <i :class="item.meta.icon"></i>
+            <span>{{ item.meta.title }}</span>
           </template>
 
+          <el-menu-item v-for="subitem in item.children" :key="subitem.path" :index="item.path + '/' + subitem.path">
+            <template slot="title">
+              <i :class="subitem.meta.icon"></i>
+              <span> {{ subitem.meta.title }}</span>
+            </template>
+          </el-menu-item>
+        </el-submenu>
+
+        <!-- el-menu-item 的 index 属性实际上是你希望跳转的路由路径，Element UI 会自动调用 $router.push(index)。 -->
+        <!-- 如果是 ''，Vue Router 会认为这是当前路径，不做跳转，或跳转失败。 -->
+        <el-menu-item :index="item.path || '/'" v-else>
+          <i :class="item.meta.icon"></i>
+          <span slot="title">{{ item.meta.title }}</span>
         </el-menu-item>
-      </el-submenu>
+
+      </div>
+
+
     </el-menu>
 
   </div>
 </template>
 
 <script>
-import func from '@/assets/data/func.json';
-import pathMap from '@/router/codePathMap';
+import { routes } from '@/router';
 
 export default {
   name: "Sidebar",
   data() {
     return {
-      func: null
+      funcs: null
     }
   },
   mounted() {
-    this.func = func;
-  },
-  beforeDestroy() {
-
-  },
-  methods: {
-    handleSelect(index, indexPath) {
-      const path = pathMap[index] || '';
-      if (path) {
-        if (this.$route.path !== path) {
-          this.$router.push(path);
-        }
-      } else {
-        this.$message.warning('尚未配置该页面路由路径');
-      }
-    },
+    this.funcs = routes;
   }
 }
 </script>
