@@ -1,23 +1,47 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: HomeView
+    component: () => import('@/views/Home.vue'),
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/DefaultPage.vue'),
+      },
+      {
+        path: '/govern/data-govern',
+        component: () => import('@/views/govern/DataGovern.vue'),
+      },
+      {
+        path: '/govern/data-query',
+        component: () => import('@/views/govern/DataQuery.vue'),
+      },
+      {
+        path: '/govern/govern-status',
+        component: () => import('@/views/govern/GovernStatus.vue'),
+      },
+      {
+        path: '/govern/algo-manage',
+        component: () => import('@/views/govern/AlgoManage.vue'),
+      },
+      {
+        path: '/service/union-search',
+        component: () => import('@/views/service/UnionSearch.vue'),
+      },
+      {
+        path: '/service/knowledge-dig',
+        component: () => import('@/views/service/KnowDig.vue'),
+      },
+      {
+        path: '/service/data-apply',
+        component: () => import('@/views/service/DataApply.vue'),
+      },
+    ]
   },
-  {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  }
 ]
 
 const router = new VueRouter({
