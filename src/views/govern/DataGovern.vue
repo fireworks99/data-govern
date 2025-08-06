@@ -133,7 +133,7 @@ export default {
       queryDataByCondition({
         pageSize: this.pageSize,
         pageNum: this.currentPage
-      }).then(res => {
+      }, 'data_govern').then(res => {
         this.loading = false;
         if (res.status === 200) {
           this.tableData = res.data.list;
