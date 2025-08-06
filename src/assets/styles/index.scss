@@ -11,6 +11,11 @@ body {
   margin: 0;
   padding: 0;
 
+  .separator {
+    height: 12px;
+    width: 100%;
+  }
+
   .flex_center {
     display: flex;
     align-items: center;

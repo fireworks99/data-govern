@@ -69,6 +69,7 @@
 import PanelLayout from '@/components/PanelLayout.vue';
 import treeData from '@/assets/data/tree.json';
 import { queryDataByCondition } from '@/api';
+import { renderTreeNode } from '@/utils';
 
 export default {
   name: 'DataGovern',
@@ -100,24 +101,7 @@ export default {
     this.getTableData();
   },
   methods: {
-    renderTreeNode(h, { node, data, store }) {
-      // const isLeaf = !data.children || data.children.length === 0;
-      const isLeaf = data.id.length > 5;
-
-      return h(
-        'span',
-        {
-          class: 'custom-tree-node'
-        },
-        [
-          // h('i', {
-          //   class: isLeaf ? 'el-icon-document' : 'el-icon-folder'
-          // }),
-          h('span', null, isLeaf ? '📄' : '📁'),
-          h('span', { style: 'margin-left: 5px;' }, node.label)
-        ]
-      );
-    },
+    renderTreeNode,
     handleSizeChange(val) {
       console.log(`每页 ${val} 条`);
       this.pageSize = val;
