@@ -1,12 +1,10 @@
-import data_govern from '@/assets/data/data_govern.json';
-import data_query from '@/assets/data/data_query.json';
+import base_data from '@/assets/data/base_data.json';
 
 const dataMap = {
-  data_govern,
-  data_query
+  base_data
 };
 
-export function queryDataByCondition(data, type) {
+export function queryDataByCondition(data, type = 'base_data') {
 
   const aimData = dataMap[type];
 
