@@ -20,6 +20,6 @@ export function queryDataByCondition(data, type = 'base_data') {
           total: aimData.length
         }
       });
-    }, 1000);
+    }, 500);
   });
 }

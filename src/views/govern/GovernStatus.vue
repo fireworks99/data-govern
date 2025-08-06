@@ -9,12 +9,23 @@
           <span style="color: #ef4444;font-weight: bold;">0</span>
         </div>
 
-        <div class="row">
-          <SatisItem color="#10b981" icon="el-icon-circle-check" title="已完成文件" :num="2000" />
-          <SatisItem color="#6b7280" icon="el-icon-time" title="未完成文件" :num="1000" />
-          <SatisItem color="#ef4444" icon="el-icon-warning" title="待核查文件" :num="100" />
-          <SatisItem color="#3b82f6" icon="el-icon-folder-opened" title="文件总数" :num="3100" />
+        <div style="display: flex;">
+          <div style="flex: 1;">
+            <div class="row">
+              <SatisItem color="#10b981" icon="el-icon-circle-check" title="已完成文件" :num="2000" />
+              <SatisItem color="#6b7280" icon="el-icon-time" title="未完成文件" :num="1000" />
+            </div>
+            <div class="row">
+              <SatisItem color="#ef4444" icon="el-icon-warning" title="待核查文件" :num="100" />
+              <SatisItem color="#3b82f6" icon="el-icon-folder-opened" title="文件总数" :num="3100" />
+            </div>
+          </div>
+          <div style="flex: 1;">
+            <div id="pie_chart" style="height: 100%; width: 100%;"></div>
+          </div>
         </div>
+
+
       </PanelLayout>
     </div>
     <div class="bottom">
@@ -39,8 +50,10 @@
 
               <el-table-column fixed="right" label="操作" width="280" align="center">
                 <template slot-scope="scope">
-                  <el-button @click="handleClick(scope.row)" type="primary" size="mini" icon="el-icon-refresh">重新治理</el-button>
-                  <el-button @click="handleClick(scope.row)" type="danger" size="mini" icon="el-icon-delete">删除记录</el-button>
+                  <el-button @click="handleClick(scope.row)" type="primary" size="mini"
+                    icon="el-icon-refresh">重新治理</el-button>
+                  <el-button @click="handleClick(scope.row)" type="danger" size="mini"
+                    icon="el-icon-delete">删除记录</el-button>
                 </template>
               </el-table-column>
             </el-table>
@@ -61,6 +74,7 @@
 import PanelLayout from '@/components/PanelLayout.vue';
 import SatisItem from '@/components/SatisItem.vue';
 import { queryDataByCondition } from '@/api';
+import * as echarts from 'echarts';
 
 export default {
   name: 'DataStatus',
@@ -88,6 +102,7 @@ export default {
   },
   mounted() {
     this.getTableData();
+    this.drawPie();
   },
   methods: {
     handleSizeChange(val) {
@@ -116,6 +131,46 @@ export default {
     },
     handleClick(row) {
       console.log(row);
+    },
+    drawPie() {
+      const chartDom = document.getElementById("pie_chart");
+
+      let myChart = echarts.getInstanceByDom(chartDom);
+      if (!myChart) {
+        myChart = echarts.init(chartDom);
+      }
+
+      const option = {
+        tooltip: {
+          trigger: 'item'
+        },
+        legend: {
+          orient: 'vertical', // 垂直排列图例项
+          right: 16,      // 水平靠右
+          top: 'middle'       // 垂直居中
+        },
+        grid: {
+          bottom: 16
+        },
+        series: [
+          {
+            type: 'pie',
+            radius: ['0%', '65%'],
+            center: ['40%', '60%'],
+            data: [
+              { value: 2000, name: '已完成文件', itemStyle: { color: '#10b981' } },
+              { value: 1000, name: '未完成文件', itemStyle: { color: '#6b7280' } },
+              { value: 100, name: '待核查文件', itemStyle: { color: '#ef4444' } },
+            ]
+          }
+        ]
+      };
+
+      myChart.setOption(option);
+
+      setTimeout(() => {
+        myChart.resize();
+      });
     }
   }
 }
