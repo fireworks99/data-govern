@@ -62,7 +62,7 @@
 </template>
 
 <script>
-import OfficePreview from '@/components/Preview/OfficePreview.vue';
+import OfficePreview from '@/components/OfficePreview.vue';
 import search_data from '@/assets/data/search_data.json';
 
 export default {

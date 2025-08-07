@@ -1,7 +1,9 @@
 <template>
   <div class="wrapper">
     <div class="top">
-      <PanelLayout title="年度任务分布" icon="date"></PanelLayout>
+      <PanelLayout title="年度任务分布" icon="date">
+        <FrappeGantt :tasks="taskList" />
+      </PanelLayout>
     </div>
     <div class="bottom">
       <PanelLayout title="任务信息" icon="info"></PanelLayout>
@@ -11,11 +13,42 @@
 
 <script>
 import PanelLayout from '@/components/PanelLayout.vue';
+import FrappeGantt from "@/components/FrappeGantt.vue";
 
 export default {
   name: 'KnowDig',
   components: {
-    PanelLayout
+    PanelLayout,
+    FrappeGantt
+  },
+  data() {
+    return {
+      taskList: [
+        {
+          id: "Task1",
+          name: "任务 A",
+          start: "2025-08-01",
+          end: "2025-08-05",
+          progress: 20,
+        },
+        {
+          id: "Task2",
+          name: "任务 B",
+          start: "2025-08-04",
+          end: "2025-08-10",
+          progress: 60,
+          dependencies: "Task1",
+        },
+        {
+          id: "Task3",
+          name: "任务 C",
+          start: "2025-08-08",
+          end: "2025-08-12",
+          progress: 0,
+          dependencies: "Task2",
+        },
+      ],
+    }
   }
 }
 </script>
