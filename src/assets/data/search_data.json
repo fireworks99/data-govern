@@ -1,0 +1,74 @@
+[
+  {
+    "title": "2023年春季演训数据分析报告",
+    "url": "https://dataservice.example.com/reports/2023-spring",
+    "desc": "2023年春季演训的全面数据分析报告，包含战术执行效果、装备性能评估和人员表现分析等关键指标...",
+    "date": "2023-05-15",
+    "icon": "fa-file-text-o",
+    "type": "PDF文档",
+    "tag": "演训数据库"
+  },
+  {
+    "title": "战术协同作战数据挖掘结果",
+    "url": "https://dataservice.example.com/knowledge/tactical-cooperation",
+    "desc": "基于近三年演训数据的战术协同作战知识挖掘成果，包含5种典型协同模式和3种改进建议...",
+    "date": "2023-06-22",
+    "icon": "fa-bullseye",
+    "type": "知识条目",
+    "tag": "战术分析"
+  },
+  {
+    "title": "装备性能评估数据服务API",
+    "url": "https://api.dataservice.example.com/equipment-performance",
+    "desc": "提供演训装备性能评估数据的RESTful API接口，支持按装备类型、演训场次和时间范围查询...",
+    "date": "2023-04-10",
+    "icon": "fa-server",
+    "type": "数据服务",
+    "tag": "API接口"
+  },
+  {
+    "title": "演训数据申领流程指南",
+    "url": "https://dataservice.example.com/guides/data-request",
+    "desc": "详细说明如何申请获取演训原始数据的流程指南，包含权限要求、申请表格填写和审批流程...",
+    "date": "2023-07-05",
+    "icon": "fa-file-text-o",
+    "type": "指导文档",
+    "tag": "流程说明"
+  },
+  {
+    "title": "2022年冬季演训数据集",
+    "url": "https://dataservice.example.com/datasets/2022-winter",
+    "desc": "2022年冬季演训的完整数据集，包含装备数据、环境数据和人员表现数据，已脱敏处理...",
+    "date": "2023-01-20",
+    "icon": "fa-database",
+    "type": "数据集",
+    "tag": "原始数据"
+  },
+  {
+    "title": "红蓝对抗演训态势感知报告",
+    "url": "https://dataservice.example.com/reports/red-blue-scenario",
+    "desc": "基于实时数据的红蓝对抗演训态势感知分析，动态展示双方兵力部署、关键节点攻防和战损评估。",
+    "date": "2023-08-10",
+    "icon": "fa-bar-chart",
+    "type": "动态报告",
+    "tag": "实时分析"
+  },
+  {
+    "title": "无人机集群协同战术库",
+    "url": "https://dataservice.example.com/knowledge/drone-swarm-tactics",
+    "desc": "整理并归纳无人机集群在侦察、打击、干扰等任务中的12种标准协同战术模式，附带历史演训数据验证。",
+    "date": "2023-09-18",
+    "icon": "fa-sitemap",
+    "type": "知识条目",
+    "tag": "战术分析"
+  },
+  {
+    "title": "2024年夏季装备维护数据",
+    "url": "https://dataservice.example.com/datasets/2024-summer-maintenance",
+    "desc": "2024年夏季演训期间主要装备的维护记录、故障率和维修时长数据，用于评估装备的可靠性。",
+    "date": "2024-02-28",
+    "icon": "fa-wrench",
+    "type": "数据集",
+    "tag": "装备保障"
+  }
+]
