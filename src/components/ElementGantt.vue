@@ -1,5 +1,5 @@
 <template>
-  <el-table :data="tableData" border style="width: 100%" header-row-class-name="custom-header">
+  <el-table :data="tableData" border style="width: 100%" header-row-class-name="custom-header" class="my-table">
     <!-- 第一列：任务名称 + 查看链接 -->
     <el-table-column label="任务名称" width="200" align="center" fixed="left">
       <template slot-scope="scope">
@@ -93,8 +93,9 @@ export default {
 
       let style = {
         backgroundColor: color,
-        height: "20px",
-        borderRadius: "4px",
+        height: "100%",
+        // height: "20px",
+        // borderRadius: "4px",
       };
 
       // 起始月份
@@ -112,7 +113,7 @@ export default {
       }
 
       return style;
-    },
+    }
   },
 };
 </script>
@@ -135,5 +136,21 @@ export default {
   th.el-table__cell {
     background-color: #f5f7fa !important;
   }
+}
+
+.my-table {
+  .el-table__row {
+    height: 32px;
+  }
+
+  .el-table__cell {
+    line-height: 50px;
+    padding: 0;
+
+    .cell {
+      padding: 0;
+    }
+  }
+
 }
 </style>
