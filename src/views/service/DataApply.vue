@@ -9,12 +9,12 @@
         <div class="intro">层级结构: 任务 > 阶段 > 平台</div>
         <div class="intro" style="display: flex;">
           <div style="white-space: nowrap;" class="flex_center">选择任务：</div>
-          <el-select placeholder="请选择" v-model="value">
+          <el-select placeholder="请选择" v-model="value" size="small">
             <el-option label="任务1" value="1"></el-option>
           </el-select>
         </div>
         <div class="intro">
-          <el-input placeholder="输入节点名称进行查询..." prefix-icon="el-icon-search" v-model="input" clearable=""></el-input>
+          <el-input placeholder="输入节点名称进行查询..." prefix-icon="el-icon-search" v-model="input" clearable size="small"></el-input>
         </div>
         <div class="tree_wrapper">
           <el-tree :data="treeData" show-checkbox default-expand-all node-key="id" ref="tree" highlight-current

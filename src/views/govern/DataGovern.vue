@@ -21,7 +21,7 @@
 
         <div style="padding: 16px;height: 100%;box-sizing: border-box;">
 
-          <el-select clearable v-model="batchComponent" placeholder="批量设置组件">
+          <el-select clearable v-model="batchComponent" placeholder="批量设置组件" style="width: auto;">
             <el-option v-for="item in componentsOptions" :key="item.value" :label="item.label" :value="item.value">
             </el-option>
           </el-select>
