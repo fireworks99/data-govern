@@ -11,7 +11,7 @@
     </div>
 
     <!-- 条件节点 -->
-    <div v-else-if="data.type === 'condition'" class="condition-node">
+    <div v-else-if="data.type === 'condition'" class="condition-node" >
       <div class="title">{{ data.title }}</div>
       <div v-for="(child, i) in data.children" :key="i">
         condition {{ i + 1 }}: {{ child.title }}
