@@ -20,8 +20,8 @@
 
             <div class="flow-wrapper" ref="flowWrapper">
 
-              <SimpleFlowChart ref="simpleFlowChart" v-model="flowData" 
-                :showScaleBar="false" vertical background="#f7f7f7"/>
+              <SimpleFlowChart ref="simpleFlowChart" v-model="flowData" :showScaleBar="false" vertical
+                background="#f7f7f7" />
 
               <div class="toolbar">
                 <button @click="toggleFullscreen">
@@ -39,6 +39,32 @@
           <template slot="right">
             <el-button type="primary" icon="el-icon-plus" size="small">添加</el-button>
           </template>
+
+          <div style="padding: 16px;height: 100%;box-sizing: border-box;">
+            <div class="table_wrapper">
+              <el-table :data="tableData" style="width: 100%" height="100%" v-loading="loading">
+                <el-table-column type="index" label="序号" align="center"></el-table-column>
+                <el-table-column prop="name" label="组件名称" align="center"></el-table-column>
+                <el-table-column label="组件分类" align="center">
+                  <template slot-scope="scope">
+                    {{ componentMap[scope.row.type] }}
+                  </template>
+                </el-table-column>
+                <el-table-column prop="multiformat" label="治理文件格式" align="center"></el-table-column>
+                <el-table-column label="关联数据库" align="center">
+                  <template slot-scope="scope">
+                    {{ dbMap[scope.row.db] || '' }}
+                  </template>
+                </el-table-column>
+              </el-table>
+            </div>
+
+            <div class="flex_center" style="height: 48px;">
+              <el-pagination :current-page="currentPage" :page-size="pageSize" :page-sizes="[5, 10, 15, 20]"
+                layout="total, sizes, prev, pager, next, jumper" :total="total" @size-change="handleSizeChange"
+                @current-change="handleCurrentChange" />
+            </div>
+          </div>
         </PanelLayout>
       </div>
     </div>
@@ -47,6 +73,7 @@
 
 <script>
 import PanelLayout from '@/components/PanelLayout.vue';
+import { queryDataByCondition } from '@/api';
 
 export default {
   name: 'AlgoManage',
@@ -100,13 +127,30 @@ export default {
           ]
         },
         { id: 'endEvent', type: 'end', title: '结束' }
-      ]
+      ],
+      tableData: [],
+      currentPage: 1,
+      pageSize: 5,
+      total: 0,
+      loading: false,
+      dbMap: {
+        '1': '声纳视频频谱库',
+        '2': '水下攻防演训知识库',
+        '3': '水下攻防目标库',
+        '4': '水下攻防全文检索库'
+      },
+      componentMap: {
+        '1': '舰艇音视频治理组件',
+        '2': '演训文书治理组件',
+        '3': '演训声像治理组件',
+      }
     }
   },
   mounted() {
     document.addEventListener('fullscreenchange', () => {
       this.isFullscreen = !!document.fullscreenElement;
     });
+    this.getTableData();
   },
   beforeDestroy() {
     window.removeEventListener('resize', this.fitFlowChart);
@@ -118,7 +162,31 @@ export default {
       } else {
         document.exitFullscreen();
       }
-    }
+    },
+    handleSizeChange(val) {
+      console.log(`每页 ${val} 条`);
+      this.pageSize = val;
+      this.getTableData();
+    },
+    handleCurrentChange(val) {
+      console.log(`当前页: ${val}`);
+      this.currentPage = val;
+      this.getTableData();
+    },
+    getTableData() {
+      this.loading = true;
+      queryDataByCondition({
+        pageSize: this.pageSize,
+        pageNum: this.currentPage
+      }).then(res => {
+        this.loading = false;
+        if (res.status === 200) {
+          this.tableData = res.data.list;
+          // this.tableData = [];//暂无数据
+          this.total = res.data.total;
+        }
+      })
+    },
   }
 }
 </script>
@@ -161,6 +229,12 @@ export default {
 
     .bottom {
       flex: 1;
+      min-height: 0;
+
+      .table_wrapper {
+        height: calc(100% - 48px);
+        overflow-y: auto;
+      }
     }
   }
 

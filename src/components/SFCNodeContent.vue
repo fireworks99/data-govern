@@ -27,9 +27,9 @@
 export default {
   name: 'SFCNodeContent',
   props: ['data'],
-  mounted() {
-    console.log(this.data);
-  },
+  // mounted() {
+  //   console.log(this.data);
+  // },
   methods: {
     hexToRgba(hex, alpha) {
       if (!hex) hex = "#dedede";
