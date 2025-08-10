@@ -5,6 +5,109 @@
         <template slot="right">
           <el-button type="primary" icon="el-icon-plus" size="small">添加</el-button>
         </template>
+
+        <div style="padding: 16px;height: 100%;box-sizing: border-box; overflow-y: auto;">
+          <Collapse title="演训文书治理模型">
+            <div class="model_item">
+              <div>AAAAAA模型</div>
+              <i class="el-icon-info"></i>
+            </div>
+            <div class="model_item">
+              <div>BBBBBB模型</div>
+              <i class="el-icon-info"></i>
+            </div>
+            <div class="model_item" style="flex-direction: column;">
+              <div
+                style="display: flex; align-items: center; justify-content: space-between; width: 100%;margin-bottom: 8px;">
+                <div>模型正确率：<span style="font-weight: bold; color: #85ce61;">92%</span></div>
+                <div>平均处理耗时：<span style="font-weight: bold; color: #000;">0.4秒</span></div>
+              </div>
+              <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+                <el-button type="primary" size="small" icon="el-icon-sort">模型替换</el-button>
+                <el-button type="danger" plain size="small" icon="el-icon-delete">模型删除</el-button>
+              </div>
+            </div>
+          </Collapse>
+          <Collapse title="舰艇音视频治理模型" :initFold="false">
+            <div class="model_item">
+              <div>关键片段截取模型</div>
+              <i class="el-icon-info"></i>
+            </div>
+            <div class="model_item">
+              <div>谱图特征截取模型</div>
+              <i class="el-icon-info"></i>
+            </div>
+            <div class="model_item">
+              <div>Demon谱分析模型</div>
+              <i class="el-icon-info"></i>
+            </div>
+            <div class="model_item">
+              <div>Lofar谱分析模型</div>
+              <i class="el-icon-info"></i>
+            </div>
+            <div class="model_item">
+              <div>时频谱分析模型</div>
+              <i class="el-icon-info"></i>
+            </div>
+            <div class="model_item">
+              <div>参数信息提取模型</div>
+              <i class="el-icon-info"></i>
+            </div>
+            <div class="model_item" style="flex-direction: column;">
+              <div
+                style="display: flex; align-items: center; justify-content: space-between; width: 100%;margin-bottom: 8px;">
+                <div>模型正确率：<span style="font-weight: bold; color: #85ce61;">90%</span></div>
+                <div>平均处理耗时：<span style="font-weight: bold; color: #000;">0.3秒</span></div>
+              </div>
+              <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+                <el-button type="primary" size="small" icon="el-icon-sort">模型替换</el-button>
+                <el-button type="danger" plain size="small" icon="el-icon-delete">模型删除</el-button>
+              </div>
+            </div>
+          </Collapse>
+          <Collapse title="演训声像治理模型">
+            <div class="model_item">
+              <div>CCCCCC模型</div>
+              <i class="el-icon-info"></i>
+            </div>
+            <div class="model_item">
+              <div>DDDDDD模型</div>
+              <i class="el-icon-info"></i>
+            </div>
+            <div class="model_item" style="flex-direction: column;">
+              <div
+                style="display: flex; align-items: center; justify-content: space-between; width: 100%;margin-bottom: 8px;">
+                <div>模型正确率：<span style="font-weight: bold; color: #85ce61;">94%</span></div>
+                <div>平均处理耗时：<span style="font-weight: bold; color: #000;">0.6秒</span></div>
+              </div>
+              <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+                <el-button type="primary" size="small" icon="el-icon-sort">模型替换</el-button>
+                <el-button type="danger" plain size="small" icon="el-icon-delete">模型删除</el-button>
+              </div>
+            </div>
+          </Collapse>
+          <Collapse title="流数据治理模型">
+            <div class="model_item">
+              <div>EEEEEE模型</div>
+              <i class="el-icon-info"></i>
+            </div>
+            <div class="model_item">
+              <div>FFFFFF模型</div>
+              <i class="el-icon-info"></i>
+            </div>
+            <div class="model_item" style="flex-direction: column;">
+              <div
+                style="display: flex; align-items: center; justify-content: space-between; width: 100%;margin-bottom: 8px;">
+                <div>模型正确率：<span style="font-weight: bold; color: #85ce61;">93%</span></div>
+                <div>平均处理耗时：<span style="font-weight: bold; color: #000;">0.4秒</span></div>
+              </div>
+              <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+                <el-button type="primary" size="small" icon="el-icon-sort">模型替换</el-button>
+                <el-button type="danger" plain size="small" icon="el-icon-delete">模型删除</el-button>
+              </div>
+            </div>
+          </Collapse>
+        </div>
       </PanelLayout>
     </div>
     <div class="right">
@@ -74,11 +177,13 @@
 <script>
 import PanelLayout from '@/components/PanelLayout.vue';
 import { queryDataByCondition } from '@/api';
+import Collapse from '@/components/Collapse.vue';
 
 export default {
   name: 'AlgoManage',
   components: {
-    PanelLayout
+    PanelLayout,
+    Collapse
   },
   data() {
     return {
@@ -201,6 +306,20 @@ export default {
 
   .left {
     flex: 1;
+    min-width: 0;
+
+    .model_item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 4px 8px;
+      box-sizing: border-box;
+      border-radius: 8px;
+      color: #6e7786;
+      background-color: #fff;
+      border: 1px solid rgba(127, 127, 127, .2);
+      margin-bottom: 8px;
+    }
   }
 
   .right {
