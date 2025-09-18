@@ -19,7 +19,7 @@ Vue.use(SimpleFlowChart, {
 
 Vue.component('SFCNodeContent', SFCNodeContent)
 
-fetch('/config.json')
+fetch('/data-govern/config.json')
   .then(res => res.json())
   .then(config => {
     window.APP_CONFIG = config
