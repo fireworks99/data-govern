@@ -2,6 +2,7 @@ const { defineConfig } = require('@vue/cli-service');
 const path = require('path');
 
 module.exports = defineConfig({
+  publicPath: '/data-govern/',
   transpileDependencies: true,
   configureWebpack: {
     name: "数据治理与数据服务",
